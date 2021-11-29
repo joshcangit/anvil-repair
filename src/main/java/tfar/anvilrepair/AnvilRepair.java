@@ -17,14 +17,14 @@ import net.minecraft.world.phys.BlockHitResult;
 public class AnvilRepair implements ModInitializer, UseBlockCallback {
 	@Override
 	public void onInitialize() {
-		DispenserBlock.registerBehavior(Items.IRON_BLOCK,new RepairAnvilBehavior());
+		DispenserBlock.registerBehavior(Items.IRON_INGOT,new RepairAnvilBehavior());
 		UseBlockCallback.EVENT.register(this);
 	}
 
 	@Override
 	public InteractionResult interact(Player player, Level world, InteractionHand hand, BlockHitResult hitResult) {
 		ItemStack stack = player.getItemInHand(hand);
-		if (stack.getItem() == Items.IRON_BLOCK) {
+		if (stack.getItem() == Items.IRON_INGOT) {
 			BlockPos pos = hitResult.getBlockPos();
 			BlockState anvil = world.getBlockState(pos);
 			if (RepairAnvilBehavior.canRepair(anvil.getBlock())) {
